@@ -23,44 +23,34 @@
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js"></script>
     <script>
+      xoff = 0;
+      yoff = 0;
+      inc = 0.01;
       function setup() {
         createCanvas(windowWidth, windowHeight); // Fill the entire window
         noStroke();
         pixelDensity(1);
-        describe("A noise-based colorful pattern evolving over time.");
-        frameRate(30); // Set the frame rate to 30 frames per second
       }
 
       function draw() {
         loadPixels();
         background(51);
-
-        let inc = 0.01;
-        let zinc = 0.01;
-        let zoff = frameCount * zinc;
-
-        // Initialize y offset
-        let yoff = 0;
-        for (let y = 0; y < height; y++) {
-          // Initialize x offset
-          let xoff = 0;
-          for (let x = 0; x < width; x++) {
-            let index = (x + y * width) * 4;
-
-            // Generate noise values for RGB channels
-            let r1 = noise(xoff, yoff, zoff) * 255;
-
-            // Set pixel color
-            pixels[index] = r1; // Red channel
-            pixels[index + 1] = r1; // Green channel
-            pixels[index + 2] = r1; // Blue channel
-            pixels[index + 3] = 255; // Alpha channel
-
+        for (var y = 0; y < height; y++) {
+          xoff = 0;
+          for (var x = 0; x < width; x++) {
+            var index = (x + y * width) * 4;
+            // var r = noise(xoff, yoff) * 255;
+            var r = random(0, 255);
+            pixels[index] = r;
+            pixels[index + 1] = r;
+            pixels[index + 2] = r;
+            pixels[index + 3] = 255;
             xoff += inc;
           }
           yoff += inc;
         }
         updatePixels();
+        noLoop();
       }
       function windowResized() {
         resizeCanvas(windowWidth, windowHeight);

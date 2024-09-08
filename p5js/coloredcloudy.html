@@ -49,11 +49,13 @@
 
             // Generate noise values for RGB channels
             let r1 = noise(xoff, yoff, zoff) * 255;
+            let r2 = noise(xoff + 1000, yoff + 1000, zoff + 1000) * 255;
+            let r3 = noise(xoff + 2000, yoff + 2000, zoff + 2000) * 255;
 
             // Set pixel color
             pixels[index] = r1; // Red channel
-            pixels[index + 1] = r1; // Green channel
-            pixels[index + 2] = r1; // Blue channel
+            pixels[index + 1] = r2; // Green channel
+            pixels[index + 2] = r3; // Blue channel
             pixels[index + 3] = 255; // Alpha channel
 
             xoff += inc;

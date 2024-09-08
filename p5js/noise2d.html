@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p5.js Sketch</title>
+    <style>
+      /* Reset default margin and padding */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* Optional: Ensure the canvas fills the entire viewport */
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js"></script>
+    <script>
+      xoff = 0;
+      start = 0;
+      inc = 0.01;
+      function setup() {
+        createCanvas(windowWidth, windowHeight); // Fill the entire window
+        noStroke();
+      }
+
+      function draw() {
+        background(51);
+        xoff = start;
+        beginShape();
+        for (var x = 0; x < width; x++) {
+          stroke(255);
+          noFill();
+          let y = random(0, width / 2);
+          vertex(x, y);
+          xoff += inc;
+        }
+        endShape();
+        start += inc;
+      }
+      function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+      }
+    </script>
+  </body>
+</html>
